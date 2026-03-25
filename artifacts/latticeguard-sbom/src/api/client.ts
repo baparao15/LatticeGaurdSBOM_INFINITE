@@ -1,4 +1,5 @@
-const BASE = "/latticeguard-api";
+const envUrl = import.meta.env.VITE_API_URL;
+const BASE = envUrl ? `${envUrl.replace(/\/+$/, '')}/latticeguard-api` : "/latticeguard-api";
 
 async function request<T>(
   method: string,
