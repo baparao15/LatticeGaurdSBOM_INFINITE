@@ -87,7 +87,7 @@ export default function QuantumThreat() {
         <div className="text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 mb-4">
             <AlertTriangle className="w-3.5 h-3.5 text-red-400" />
-            <span className="text-xs text-red-400 font-medium">Phase 5 — Quantum Threat Simulator</span>
+            <span className="text-xs text-red-400 font-medium">Quantum Threat Simulator</span>
           </div>
           <h2 className="text-3xl font-bold text-white mb-3">
             The <span className="text-red-400">Quantum Threat</span> to Your Supply Chain

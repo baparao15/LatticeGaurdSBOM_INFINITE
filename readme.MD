@@ -6,13 +6,26 @@ LatticeGuard SBOM is an advanced dependency security tool that generates Softwar
 
 ---
 
-## 🚀 Key Features
+## 🛡️ Core Verification Pipeline
 
-*   **🔍 Name Verification:** Prevents typosquatting by cross-referencing dependencies against the top 8,000 known legitimate PyPI packages.
-*   **📊 5-Signal Risk Engine:** Evaluates package safety using release history, maintainer anomalies, and structural integrity.
-*   **🔬 Static Source Scan:** Dissects package source code (`.tar.gz` / `.whl`) to find malicious heuristic patterns (e.g., unauthorized data exfiltration using `os.environ` + `requests.post`).
-*   **✍️ Hybrid Quantum-Safe Signing:** Cryptographically seals the standard CycloneDX SBOM JSON using a hybrid approach—classical **Ed25519** combined with the post-quantum **ML-DSA-65** algorithm.
-*   **✅ Verification Engine:** Mathematically proves the integrity of your SBOM. If a single byte is altered in transit, the quantum signature breaks, throwing a critical alert.
+### 1. Pre-Fetch Name Safety Gate
+Before any network call, package names are verified against an ML-DSA-65 signed list of top PyPI packages.
+*   Levenshtein distance & homoglyph normalization to catch typosquatting.
+*   Signed attestation per verdict.
+
+### 2. 5-Signal Risk Scoring
+Every resolved package receives a 0–100 risk score computed from five independent signals.
+*   Evaluates CVE severity, package age, maintainer count, and download volume.
+*   Each score is cryptographically signed with ML-DSA-65 + Ed25519.
+
+### 3. Static Source Scan
+Downloads archives in-memory and heavily scans the **entire file** contents for malicious patterns.
+*   Detects `exec`, `eval` obfuscation, and credential harvesting.
+*   Catches unauthorized network calls without code execution.
+
+### 4. Cryptographic Export & Audit
+Every event across the pipeline is sealed with hybrid classical and post-quantum keys (ML-DSA-65 + Ed25519).
+*   The final CycloneDX SBOM, risk scores, and scan findings are exported as a mathematically verifiable cryptographic chain.
 
 ---
 

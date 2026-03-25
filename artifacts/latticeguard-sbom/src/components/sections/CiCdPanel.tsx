@@ -149,7 +149,7 @@ export default function CiCdPanel() {
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00d4ff]/10 border border-[#00d4ff]/20 mb-4">
             <Terminal className="w-3.5 h-3.5 text-[#00d4ff]" />
-            <span className="text-xs text-[#00d4ff] font-medium">Phase 8 — CI/CD Integration</span>
+            <span className="text-xs text-[#00d4ff] font-medium">CI/CD Integration</span>
           </div>
           <h2 className="text-3xl font-bold text-white mb-3">
             Integrate into Your <span className="gradient-text">Pipeline</span>

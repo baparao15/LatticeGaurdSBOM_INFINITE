@@ -7,13 +7,11 @@ const STAGES = [
     icon: <Shield className="w-6 h-6" />,
     color: "#00d4ff",
     title: "Pre-Fetch Name Safety Gate",
-    subtitle: "Phase 1",
-    desc: "Before any network call, every package name is verified against our ML-DSA-65 signed list of 8,000 top PyPI packages. Levenshtein distance ≤2 and homoglyph normalization (0→o, 1→l, rn→m) catch typosquats like numpy-1 or requests-lib.",
+    subtitle: "Safety Gate",
+    desc: "Before any network call, every package name is verified against our ML-DSA-65 signed list of top PyPI packages. Levenshtein distance and homoglyph normalization catch typosquatting.",
     bullets: [
-      "ML-DSA-65 signed top-8K list (24h TTL)",
-      "Levenshtein distance with O(1) exact cache",
-      "Homoglyph normalisation (0→o, rn→m, vv→w)",
-      "Padding pattern detection (python-X, X-lib)",
+      "ML-DSA-65 signed top-8K list",
+      "Levenshtein distance & homoglyph normalization",
       "Signed attestation per verdict",
     ],
   },
@@ -22,14 +20,12 @@ const STAGES = [
     icon: <BarChart2 className="w-6 h-6" />,
     color: "#7c3aed",
     title: "5-Signal Risk Scoring",
-    subtitle: "Phase 2",
-    desc: "Every resolved package receives a 0–100 risk score computed from five independent signals. The score is signed with ML-DSA-65 + Ed25519 and included in the SBOM export.",
+    subtitle: "Risk Evaluation",
+    desc: "Every resolved package receives a 0–100 risk score computed from five independent signals. Each score is cryptographically signed with ML-DSA-65 + Ed25519.",
     bullets: [
-      "CVE severity (0–40 pts): worst single CVE drives the score",
-      "Package age (0–20 pts): new packages and single-release packages",
-      "Maintainer count (0–15 pts): bus-factor estimate",
-      "Download volume (0–15 pts): pypistats.org monthly count",
-      "Name check result (0–10 pts): typosquat penalty",
+      "Evaluates CVE severity & package age",
+      "Assesses maintainer count & download volume",
+      "Risk score is signed with ML-DSA-65 + Ed25519",
     ],
   },
   {
@@ -37,45 +33,27 @@ const STAGES = [
     icon: <Search className="w-6 h-6" />,
     color: "#ff3366",
     title: "Static Source Scan",
-    subtitle: "Phase 3",
-    desc: "For packages that ship an sdist tar.gz, LatticeGuard downloads the archive in-memory (without executing it) and scans install-time files for malicious patterns.",
+    subtitle: "Source Analysis",
+    desc: "Downloads packages in-memory and heavily scans the entire file contents for malicious patterns, identifying unauthorized behavior without executing code.",
     bullets: [
-      "Scans setup.py, setup.cfg, pyproject.toml, __init__.py",
-      "Detects exec(base64.b64decode(…)) and eval obfuscation",
-      "Flags subprocess/os.system in install scripts",
-      "Catches network calls during pip install",
-      "Detects credential harvesting (AWS_, GITHUB_TOKEN, .ssh)",
+      "Scans the entire file contents",
+      "Detects exec(base64...) and eval obfuscation",
+      "Catches unauthorized network calls",
+      "Detects credential harvesting",
     ],
   },
   {
     n: "04",
-    icon: <Clock className="w-6 h-6" />,
-    color: "#00ff88",
-    title: "PQC Audit Log Timeline",
-    subtitle: "Phase 4",
-    desc: "Every cryptographic event — list fetch, name check, risk score, static scan, SBOM signing — is appended to an immutable audit log. Each event is independently signed with ML-DSA-65 + Ed25519.",
-    bullets: [
-      "Tamper-evident — every event carries a unique signature",
-      "Events: NAME_LIST_FETCHED, NAME_CHECK, RISK_SCORED, STATIC_SCAN, SBOM_SIGNED",
-      "ML-DSA-65 + Ed25519 hybrid per event",
-      "3,357 bytes of signature data per event",
-      "Session-scoped — cleared on server restart",
-    ],
-  },
-  {
-    n: "05",
     icon: <Package className="w-6 h-6" />,
-    color: "#ff9900",
-    title: "Sign & 6-File Export",
-    subtitle: "Phase 7",
-    desc: "After review, generate a session ML-DSA-65 + Ed25519 keypair and sign every component. The export ZIP contains 6 files covering the complete cryptographic chain from name-check through SBOM signing.",
+    color: "#00ff88",
+    title: "Cryptographic Export & Audit",
+    subtitle: "Audit & Export",
+    desc: "Every event is sealed with hybrid classical and post-quantum keys (ML-DSA-65 + Ed25519). The final SBOM and risk results are exported as a mathematically verifiable package.",
     bullets: [
-      "latticeguard-sbom.json — CycloneDX 1.5 SBOM",
-      "name-attestations.json — signed per-name verdicts",
-      "static-scan-results.json — signed scan findings",
-      "risk-scores.json — signed 0-100 scores",
-      "public-keys.pem — ML-DSA-65 + Ed25519 public keys",
-      "verify.py — offline verifier (pip install cryptography)",
+      "Tamper-evident logs per event",
+      "Hybrid ML-DSA-65 + Ed25519 signatures",
+      "CycloneDX 1.5 JSON export",
+      "Mathematically verifiable cryptographic chain",
     ],
   },
 ];
@@ -94,7 +72,7 @@ export default function HowItWorks() {
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00d4ff]/10 border border-[#00d4ff]/20 mb-4"
           >
             <CheckCircle className="w-3.5 h-3.5 text-[#00d4ff]" />
-            <span className="text-xs text-[#00d4ff] font-medium">8-Phase Security Pipeline</span>
+            <span className="text-xs text-[#00d4ff] font-medium">Core Security Pipeline</span>
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -105,7 +83,7 @@ export default function HowItWorks() {
             How LatticeGuard Works
           </motion.h2>
           <p className="text-gray-400 max-w-xl mx-auto text-sm leading-relaxed">
-            Five automated stages run from dependency resolution through quantum-safe SBOM export —
+            Four automated stages run from dependency resolution through quantum-safe SBOM export —
             every step signed, every verdict recorded.
           </p>
         </div>

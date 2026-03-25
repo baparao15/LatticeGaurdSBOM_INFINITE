@@ -18,7 +18,7 @@ const CHIPS = [
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center pt-16 overflow-hidden">
+    <section className="relative min-h-[85vh] flex flex-col items-center justify-start pt-16 lg:pt-24 pb-20 overflow-hidden">
       {/* Subtle grid */}
       <div className="absolute inset-0 lattice-bg animate-lattice opacity-50" />
 

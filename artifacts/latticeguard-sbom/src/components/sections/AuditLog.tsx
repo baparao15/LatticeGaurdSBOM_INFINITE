@@ -41,7 +41,7 @@ export default function AuditLog() {
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-4">
             <Clock className="w-3.5 h-3.5 text-emerald-400" />
-            <span className="text-xs text-emerald-400 font-medium">Phase 4 — PQC Audit Log</span>
+            <span className="text-xs text-emerald-400 font-medium">PQC Audit Log</span>
           </div>
           <h2 className="text-3xl font-bold text-white mb-3">
             Cryptographic <span className="gradient-text">Audit Timeline</span>
