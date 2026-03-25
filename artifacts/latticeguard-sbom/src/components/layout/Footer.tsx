@@ -44,7 +44,7 @@ export default function Footer() {
               Built for the post-quantum era.
             </p>
             <p className="mt-3 text-xs text-slate-600">
-              Team INFIFNITE · QC² Hackathon 2025
+              Team INFIFNITE · QC² Hackathon 2026
             </p>
           </div>
 
@@ -76,12 +76,17 @@ export default function Footer() {
             Built with NIST FIPS 204 · ML-DSA-65 · Ed25519
           </div>
           <div className="flex items-center gap-4 text-xs text-slate-600">
-            <a href="#" className="flex items-center gap-1 hover:text-slate-300 transition-colors">
+            <a
+              href="https://github.com/baparao15/LatticeGaurdSBOM_INFINITE"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1"
+            >
               <Github className="w-3.5 h-3.5" />
               GitHub
               <ExternalLink className="w-2.5 h-2.5" />
             </a>
-            <span>© 2025 LatticeGuard</span>
+            <span>© 2026 LatticeGuard</span>
           </div>
         </div>
       </div>
