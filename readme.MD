@@ -90,4 +90,4 @@ LatticeGuard uses **Module-Learning With Errors (M-LWE)** over high-dimensional 
 ---
 
 ## 🤝 Team
-Built by **Team INFIFNITE** for the QC² Hackathon 2025.
+Built by **Team INFIFNITE** for the QC² Hackathon 2026.
